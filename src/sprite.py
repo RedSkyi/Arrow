@@ -9,9 +9,6 @@ class Sprite:
         self.height = height
         self.width = width
 
-        self.direction = [0, 0]
-        self.speed = [0, 0]
-
         sprites.append(self)
 
     def check_collision(self, sprite):
@@ -23,18 +20,9 @@ class Sprite:
         EZ.trace_segment(self.x + self.height, self.y, self.x + self.height, self.y + self.width)
         EZ.trace_segment(self.x, self.y + self.width, self.x + self.height, self.y + self.width)
 
-    def apply(self, speed: list):
-        if self.speed[0] >= 0:
-            self.speed[0] += speed[0]
-        elif self.speed[1] >= 0:
-            self.speed[1] += speed[1]
-
     def update(self):
-        if self.speed[0] > 0:
-            self.apply([-1, 0])
-
-        self.x += self.speed[0] * self.direction[0]
-        self.y += self.speed[1] * self.direction[1]
+        # TODO: Draw sprites
+        pass
 
 
 sprites: list = []

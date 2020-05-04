@@ -1,13 +1,20 @@
-from src import EZ
+from src import EZ, sprite
 from src import config
-from src.sprite import sprite
+from src.sprites.movable_sprite import MovableSprite
+from src.sprites.player import Player
+from src.sprites.ground import Ground
 
 window = EZ.creation_fenetre(config.WIDTH, config.HEIGHT, config.NAME)
 keys = []
 
-players = [sprite.Sprite(300, 200, 100, 100), sprite.Sprite(600, 200, 100, 100)]
+players = [Player(300, 200), Player(600, 200)]
 
 EZ.reglage_fps()
+
+#  =========================
+#  DEBUG ONLY
+Ground(0, 750, config.WIDTH, 50)
+#  =========================
 
 while EZ.test_fenetre():
     EZ.trace_rectangle_droit(0, 0, config.WIDTH, config.HEIGHT, *config.WHITE)
@@ -21,18 +28,16 @@ while EZ.test_fenetre():
         EZ.destruction_fenetre()
 
     if "q" in keys:
-        players[0].direction = [-1, 0]
-
-        if players[0].speed[0] <= config.MAX_SPEED:
-            players[0].apply([2, 0])
+        if players[0].check_speed():
+            players[0].apply([-2, 0])
     elif "d" in keys:
-        players[0].direction = [1, 0]
-
-        if players[0].speed[0] <= config.MAX_SPEED:
+        if players[0].check_speed():
             players[0].apply([2, 0])
 
     for sprites in sprite.sprites:
-        sprites.update()
+        if isinstance(sprites, MovableSprite):
+            sprites.update()
+
         sprites.draw_hitbox()  # Debug only
 
     EZ.mise_a_jour()
