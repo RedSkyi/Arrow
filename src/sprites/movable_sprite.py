@@ -14,10 +14,8 @@ class MovableSprite(sprite.Sprite):
         return -config.MAX_SPEED <= self.speed[0] <= config.MAX_SPEED
 
     def apply(self, speed: list):
-        if self.speed[0] >= 0:
-            self.speed[0] += speed[0]
-        elif self.speed[1] >= 0:
-            self.speed[1] += speed[1]
+        self.speed[0] += speed[0]
+        self.speed[1] += speed[1]
 
     def update(self):
         if self.speed[0] > 0:
@@ -27,7 +25,7 @@ class MovableSprite(sprite.Sprite):
 
         for sprites in sprite.sprites:
             if isinstance(sprites, Ground):
-                if not self.check_collision(sprites):
+                if not sprites.check_collision(self):
                     self.apply([0, -1])
                 else:
                     self.speed = [self.speed[0], 0]
@@ -36,4 +34,3 @@ class MovableSprite(sprite.Sprite):
         self.y += -self.speed[1]
         super().update()
 
-    pass

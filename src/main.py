@@ -13,7 +13,7 @@ EZ.reglage_fps()
 
 #  =========================
 #  DEBUG ONLY
-Ground(0, 750, config.WIDTH, 50)
+Ground(0, 750, 50, config.WIDTH)
 #  =========================
 
 while EZ.test_fenetre():

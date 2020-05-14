@@ -12,7 +12,7 @@ class Sprite:
         sprites.append(self)
 
     def check_collision(self, sprite):
-        return self.x <= sprite.x <= self.x + self.width and self.y <= sprite.y <= self.y + self.height
+        return self.x <= sprite.x <= self.x + self.width and self.y <= sprite.y + sprite.height <= self.y + self.height
 
     def draw_hitbox(self):
         EZ.trace_segment(self.x, self.y, self.x + self.height, self.y)
