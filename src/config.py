@@ -1,0 +1,9 @@
+#  WINDOW
+HEIGHT, WIDTH = 800, 1200
+NAME = "Arrow"
+
+#  COLOR
+WHITE = (255, 255, 255)
+
+#  SPRITE
+MAX_SPEED = 10
